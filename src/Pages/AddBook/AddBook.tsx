@@ -1,0 +1,144 @@
+import React from "react";
+import { useForm } from "react-hook-form";
+import { BookGenre } from "../../Interface";
+
+interface BookForm {
+  title: string;
+  author: string;
+  genre: string;
+  publishDate: Date;
+}
+
+const AddBook = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<BookForm>();
+
+  const bookGenres: BookGenre[] = [
+    "Action and Adventure",
+    "Art",
+    "Biography",
+    "Children",
+    "Comics and Graphic Novels",
+    "Cookbooks",
+    "Drama",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Humor and Comedy",
+    "Mystery",
+    "Non-Fiction",
+    "Poetry",
+    "Religion and Spirituality",
+    "Romance",
+    "Science Fiction",
+    "Self-Help",
+    "Sports",
+    "Thriller",
+    "Travel",
+  ];
+
+  const onSubmit = (data: BookForm) => {
+    console.log(data);
+    // Handle form submission logic here
+  };
+
+  return (
+    <div className="container">
+      <div className="flex justify-center">
+        <form className="w-[600px]" onSubmit={handleSubmit(onSubmit)}>
+          <h2 className="mt-5 text-center text-2xl font-semibold mb-10">
+            Fill Up Form To Publish A Book
+          </h2>
+          <div className="grid grid-cols-2 gap-x-5 p-3 shadow-md">
+            <div>
+              <label className="block" htmlFor="title">
+                Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                placeholder="Enter Title"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                {...register("title", { required: true })}
+              />
+              {errors.title && (
+                <span className="text-xs tracking-wide text-red-600">
+                  Title field is required
+                </span>
+              )}
+            </div>
+            <div>
+              <label className="block" htmlFor="author">
+                Author Name
+              </label>
+              <input
+                type="text"
+                id="author"
+                placeholder="Enter Author Name"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                {...register("author", { required: true })}
+              />
+              {errors.author && (
+                <span className="text-xs tracking-wide text-red-600">
+                  Author Name field is required
+                </span>
+              )}
+            </div>
+            <div>
+              <label className="block" htmlFor="genre">
+                Select Genre
+              </label>
+              <select
+                id="genre"
+                className="w-full py-2 px-4 border mt-2"
+                {...register("genre", { required: true })}
+              >
+                <option hidden value="">
+                  choose a genre
+                </option>
+                {bookGenres.map((single) => (
+                  <option key={single} value={single}>
+                    {single}
+                  </option>
+                ))}
+              </select>
+              {errors.genre && (
+                <span className="text-xs tracking-wide text-red-600">
+                  Genre field is required
+                </span>
+              )}
+            </div>
+            <div>
+              <label className="block" htmlFor="publish">
+                Published Date
+              </label>
+              <input
+                type="date"
+                id="publish"
+                placeholder="Enter Author Name"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                {...register("publishDate", { required: true })}
+              />
+              {errors.publishDate && (
+                <span className="text-xs tracking-wide text-red-600">
+                  Published date field is required
+                </span>
+              )}
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="px-4 py-3 rounded bg-blue-500 mt-2 text-white hover:opacity-75 transition-all opacity-100"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default AddBook;
