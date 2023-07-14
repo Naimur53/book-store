@@ -23,4 +23,13 @@ export type BookGenre =
 export type IUser = {
   name: string | null;
   email: string | null;
+  _id: string | null;
+};
+export type IBook = {
+  _id: string;
+  title: string;
+  author: string;
+  genre: BookGenre;
+  publishedDate: Date;
+  creator: Types.ObjectId | IUser;
 };

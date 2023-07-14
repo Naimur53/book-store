@@ -5,9 +5,9 @@ const Home = () => {
   return (
     <div className="container">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 ">
-        {data.map((single, i) => (
-          <BookCard key={i}></BookCard>
-        ))}
+        {/* {data.map((single, i) => (
+          // <BookCard key={i + ""}></BookCard>
+        ))} */}
       </div>
     </div>
   );

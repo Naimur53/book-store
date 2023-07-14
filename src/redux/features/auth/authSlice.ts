@@ -18,13 +18,13 @@ const initialState: IState = {
   isLoading: true,
   isError: false,
   error: null,
-  user: { name: null, email: null },
+  user: { name: null, email: null, _id: null },
   accessToken: null,
 };
 
 export const createUser = createAsyncThunk(
   "user/createUser",
-  async (info: IUser) => {
+  async (info: Omit<IUser, "_id">) => {
     const res = await fetch("http://localhost:5000/api/v1/auth/signup", {
       method: "POST",
       headers: {
@@ -95,7 +95,7 @@ const authSlice = createSlice({
     },
     userLoggedOut: (state) => {
       state.accessToken = null;
-      state.user = { name: null, email: null };
+      state.user = { name: null, email: null, _id: null };
       state.error = null;
       state.isError = false;
       state.isLoading = false;

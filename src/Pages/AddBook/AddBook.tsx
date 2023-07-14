@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { BookGenre } from "../../Interface";
-
+import { useAddBookMutation } from "../../redux/features/book/bookApi";
+import { toast } from "react-toastify";
+import { useAppSelector } from "../../redux/hook";
+import Loading from "../../Components/Loading/Loading";
 interface BookForm {
   title: string;
   author: string;
   genre: string;
-  publishDate: Date;
+  publishedDate: Date;
 }
 
 const AddBook = () => {
+  const [addBook, { isError, isLoading, data }] = useAddBookMutation();
+  const { user } = useAppSelector((state) => state.user);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<BookForm>();
 
@@ -41,9 +47,22 @@ const AddBook = () => {
   ];
 
   const onSubmit = (data: BookForm) => {
-    console.log(data);
+    if (user) {
+      addBook({ creator: user._id, ...data });
+    }
     // Handle form submission logic here
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Something went wrong try again" + data?.message);
+    } else {
+      if (data) {
+        toast.success(data?.message);
+        reset();
+      }
+    }
+  }, [isError, data]);
 
   return (
     <div className="container">
@@ -120,21 +139,25 @@ const AddBook = () => {
                 id="publish"
                 placeholder="Enter Author Name"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                {...register("publishDate", { required: true })}
+                {...register("publishedDate", { required: true })}
               />
-              {errors.publishDate && (
+              {errors.publishedDate && (
                 <span className="text-xs tracking-wide text-red-600">
                   Published date field is required
                 </span>
               )}
             </div>
           </div>
-          <button
-            type="submit"
-            className="px-4 py-3 rounded bg-blue-500 mt-2 text-white hover:opacity-75 transition-all opacity-100"
-          >
-            Submit
-          </button>
+          {isLoading ? (
+            <Loading></Loading>
+          ) : (
+            <button
+              type="submit"
+              className="px-4 py-3 rounded bg-blue-500 mt-2 text-white hover:opacity-75 transition-all opacity-100"
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </div>
