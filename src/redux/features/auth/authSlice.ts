@@ -23,13 +23,16 @@ const initialState: IState = {
 export const createUser = createAsyncThunk(
   "user/createUser",
   async (info: Omit<IUser, "_id">) => {
-    const res = await fetch("http://localhost:5000/api/v1/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(info),
-    });
+    const res = await fetch(
+      "https://books-server-production.up.railway.app/api/v1/auth/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(info),
+      }
+    );
     const data = await res.json();
     if (data.success) {
       return data.data;
@@ -42,13 +45,16 @@ export const createUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (info: ICredential) => {
-    const res = await fetch("http://localhost:5000/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(info),
-    });
+    const res = await fetch(
+      "https://books-server-production.up.railway.app/api/v1/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(info),
+      }
+    );
     const data = await res.json();
     if (data.success) {
       return data.data;
@@ -60,13 +66,16 @@ export const loginUser = createAsyncThunk(
 export const loginUserWithToken = createAsyncThunk(
   "user/loginUserWithToken",
   async () => {
-    const res = await fetch("http://localhost:5000/api/v1/users/my-profile", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: localStorage.getItem("accessToken") || "",
-      },
-    });
+    const res = await fetch(
+      "https://books-server-production.up.railway.app/api/v1/users/my-profile",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("accessToken") || "",
+        },
+      }
+    );
     const data = await res.json();
     if (data.success) {
       return data.data;

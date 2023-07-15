@@ -28,7 +28,7 @@ const BookCardAction: React.FC<IBookCardAction> = ({ bookInfo }) => {
   const mainData: IWishlist[] = data?.data;
 
   const isAlreadyAddedToWishList = mainData?.find(
-    (single) => single.book._id === bookInfo._id
+    (single) => single?.book?._id === bookInfo?._id
   );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

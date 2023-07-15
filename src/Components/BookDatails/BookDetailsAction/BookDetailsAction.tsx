@@ -36,7 +36,7 @@ const BookDetailsAction: React.FC<IBookDetailsAction> = ({ bookInfo }) => {
   if (!user._id) {
     return <div></div>;
   }
-  const isUserIsTheCreator = bookInfo.creator._id === user._id;
+  const isUserIsTheCreator = bookInfo?.creator?._id === user?._id;
   if (!isUserIsTheCreator) {
     return <div></div>;
   }

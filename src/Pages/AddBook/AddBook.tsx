@@ -32,7 +32,7 @@ const AddBook = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error("Something went wrong try again" + data?.message);
+      toast.error("Something went wrong try again ");
     } else {
       if (data) {
         toast.success(data?.message);

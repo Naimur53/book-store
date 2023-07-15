@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import bookGenres from "../../../utils/book.";
 import { useAppDispatch } from "../../../redux/hook";
 import { setFilter } from "../../../redux/features/filter/filter";
-
+import { Link } from "react-router-dom";
 interface FilterData {
   searchTerm?: string;
   genre?: string;
@@ -30,7 +30,7 @@ const FilterArea: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-wrap space-x-4 mb-5 mt-3"
+      className="flex flex-wrap items-center space-x-4 mb-5 mt-3"
     >
       {/* Text Input */}
       <input
@@ -58,6 +58,11 @@ const FilterArea: React.FC = () => {
         {...register("publishedDate")}
         className="border p-2"
       />
+      <Link to="/add-new-book">
+        <button className="px-3 py-2 bg-blue-300 rounded font-bold text-black">
+          Add New Book
+        </button>
+      </Link>
     </form>
   );
 };
