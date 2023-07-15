@@ -44,7 +44,6 @@ const BookDetailsAction: React.FC<IBookDetailsAction> = ({ bookInfo }) => {
 
   const handleDelete = () => {
     deleteBook(bookInfo._id);
-    console.log("ddffffff");
   };
   const handleEditCLick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

@@ -38,9 +38,11 @@ export type IReview = {
   review: string;
   user: IUser;
   book: IBook | string;
+  _id: string;
 };
 
 export type IWishlist = {
+  _id: string;
   user: IUser;
   book: IBook;
 };

@@ -15,28 +15,19 @@ export const wishlistApi = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["wishlist"],
     }),
-    editBook: builder.mutation({
-      query: (info) => {
+    deleteWishlist: builder.mutation({
+      query: (id) => {
         return {
-          url: `/books/${info.id}`,
-          method: "PATCH",
-          body: info,
-        };
-      },
-    }),
-    deleteBook: builder.mutation({
-      query: ({ id }) => {
-        return {
-          url: `/books/${id}`,
+          url: `/wishlist/${id}`,
           method: "DELETE",
         };
       },
+      invalidatesTags: ["wishlist"],
     }),
   }),
 });
 export const {
-  useDeleteBookMutation,
-  useEditBookMutation,
   useGetAllWishlistByUserIdQuery,
   useAddWishlistMutation,
+  useDeleteWishlistMutation,
 } = wishlistApi;

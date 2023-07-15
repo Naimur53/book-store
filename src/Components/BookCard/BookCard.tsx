@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import BookDetailsAction from "../BookDatails/BookDetailsAction/BookDetailsAction";
 import BookCardAction from "./BookCardAction/BookCardAction";
 interface BookCardProps extends IBook {
-  key: string;
+  key?: string;
 }
 
 const BookCard: React.FC<BookCardProps> = ({

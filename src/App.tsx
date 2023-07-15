@@ -19,6 +19,7 @@ import BookDetails from "./Components/BookDatails/BookDetails";
 import EditBook from "./Pages/EditBook/EditBook";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import WishList from "./Pages/WishList/WishList";
 // Add the imported icons to the library
 library.add(fas);
 function App() {
@@ -49,6 +50,14 @@ function App() {
             element={
               <PrivateRoute>
                 <AddBook></AddBook>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/wishlist"
+            element={
+              <PrivateRoute>
+                <WishList></WishList>
               </PrivateRoute>
             }
           ></Route>
