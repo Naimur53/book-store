@@ -7,7 +7,6 @@ const Home = () => {
   const { data, isLoading, isError } = useGetBooksQuery({
     limit: 10,
   });
-  console.log({ data });
 
   if (isLoading) {
     return (
