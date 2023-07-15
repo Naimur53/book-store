@@ -28,7 +28,7 @@ const AddReviewSection: React.FC<AddReviewSectionProps> = ({ reviews }) => {
           Add review
         </button>
         <Popup open={open} onClose={handleClose}>
-          <div className="  w-[400px]  rounded-md flex   h-[200px] shadow-2xl ">
+          <div className=" bg-white border border-blue-200 w-[300px] md:w-[400px]  rounded-md flex   h-[200px] shadow-2xl ">
             <div></div>
             <AddReviewForm onClose={handleClose}></AddReviewForm>
           </div>

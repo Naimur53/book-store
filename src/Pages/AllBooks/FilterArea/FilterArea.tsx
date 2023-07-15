@@ -30,18 +30,18 @@ const FilterArea: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-wrap items-center space-x-4 mb-5 mt-3"
+      className="flex flex-wrap items-center gap-4 mb-5 mt-3"
     >
       {/* Text Input */}
       <input
         type="text"
         {...register("searchTerm")}
-        className="border p-2 flex-1"
+        className="border p-2 flex-1 md:w-auto w-full"
         placeholder="Search by author name or title or genre "
       />
 
       {/* Select Dropdown */}
-      <select {...register("genre")} className="border p-2">
+      <select {...register("genre")} className="border p-2 md:w-auto w-full">
         <option hidden value="">
           choose a genre
         </option>
@@ -56,7 +56,7 @@ const FilterArea: React.FC = () => {
       <input
         type="date"
         {...register("publishedDate")}
-        className="border p-2"
+        className="border p-2 md:w-auto w-full"
       />
       <Link to="/add-new-book">
         <button className="px-3 py-2 bg-blue-300 rounded font-bold text-black">
