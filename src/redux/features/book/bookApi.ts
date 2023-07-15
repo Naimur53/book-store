@@ -1,9 +1,26 @@
 import { apiSlice } from "../apiSlice/apiSlice";
-
+type IQuery = {
+  [key: string]: number | string | undefined;
+  limit?: number;
+  searchTerm?: string;
+  title?: string;
+  genre?: string;
+};
 export const bookApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getBooks: builder.query({
-      query: () => `/books`,
+      query: (queryInfo: IQuery) => {
+        const myquery = Object.keys(queryInfo).reduce((pre, current) => {
+          if (queryInfo[current] !== undefined && queryInfo[current] !== "") {
+            return `${pre}&${current}=${queryInfo[current]}`;
+          }
+          return pre;
+        }, "?");
+
+        return {
+          url: `/books${myquery}`,
+        };
+      },
       providesTags: ["books"],
     }),
     getBookById: builder.query({
@@ -22,19 +39,21 @@ export const bookApi = apiSlice.injectEndpoints({
     editBook: builder.mutation({
       query: (info) => {
         return {
-          url: `/books/${info.id}`,
+          url: `/books/${info._id}`,
           method: "PATCH",
           body: info,
         };
       },
+      invalidatesTags: ["books"],
     }),
     deleteBook: builder.mutation({
-      query: ({ id }) => {
+      query: (id) => {
         return {
           url: `/books/${id}`,
           method: "DELETE",
         };
       },
+      invalidatesTags: ["books"],
     }),
   }),
 });

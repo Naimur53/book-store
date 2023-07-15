@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { createUser } from "../../redux/features/auth/authSlice";
+import { createUser, setError } from "../../redux/features/auth/authSlice";
 import Loading from "../../Components/Loading/Loading";
 import { toast } from "react-toastify";
 
@@ -35,7 +35,10 @@ const SignUp: React.FC = () => {
     } else if (!isLoading && user.email) {
       navigate(location.state || "/");
     }
-  }, [error, isLoading, user, location, navigate]);
+    return () => {
+      dispatch(setError({ isError: false, error: "" }));
+    };
+  }, [error, isLoading, user, location, navigate, dispatch]);
 
   if (isLoading) {
     return <Loading></Loading>;

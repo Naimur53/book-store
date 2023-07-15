@@ -12,7 +12,9 @@ const NavBar = () => {
     <div>
       <nav className="py-4 2xl:px-6">
         <div className="container flex items-center justify-between">
-          <h2>Books</h2>
+          <Link to="/">
+            <h2 className="text-xl font-black">Books</h2>
+          </Link>
           <ul className="hidden md:flex items-center space-x-6">
             <li className=" cursor-pointer">
               <NavLink to="all-books">All Books</NavLink>
@@ -21,7 +23,7 @@ const NavBar = () => {
               <Link to="/wishlist">Wishlist</Link>
             </li>
             <li className="cursor-pointer">
-              <Link to="/add-book">Add Book</Link>
+              <Link to="/add-new-book">Add Book</Link>
             </li>
             <li className="cursor-pointer">
               {user.name ? (

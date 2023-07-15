@@ -5,6 +5,7 @@ import { useAddBookMutation } from "../../redux/features/book/bookApi";
 import { toast } from "react-toastify";
 import { useAppSelector } from "../../redux/hook";
 import Loading from "../../Components/Loading/Loading";
+import bookGenres from "../../utils/book.";
 interface BookForm {
   title: string;
   author: string;
@@ -21,30 +22,6 @@ const AddBook = () => {
     reset,
     formState: { errors },
   } = useForm<BookForm>();
-
-  const bookGenres: BookGenre[] = [
-    "Action and Adventure",
-    "Art",
-    "Biography",
-    "Children",
-    "Comics and Graphic Novels",
-    "Cookbooks",
-    "Drama",
-    "Fantasy",
-    "History",
-    "Horror",
-    "Humor and Comedy",
-    "Mystery",
-    "Non-Fiction",
-    "Poetry",
-    "Religion and Spirituality",
-    "Romance",
-    "Science Fiction",
-    "Self-Help",
-    "Sports",
-    "Thriller",
-    "Travel",
-  ];
 
   const onSubmit = (data: BookForm) => {
     if (user) {

@@ -15,6 +15,12 @@ import {
   setLoading,
 } from "./redux/features/auth/authSlice";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import BookDetails from "./Components/BookDatails/BookDetails";
+import EditBook from "./Pages/EditBook/EditBook";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+// Add the imported icons to the library
+library.add(fas);
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -34,7 +40,12 @@ function App() {
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/all-books" element={<AllBooks></AllBooks>}></Route>
           <Route
-            path="/add-book"
+            path="/book-details/:id"
+            element={<BookDetails></BookDetails>}
+          ></Route>
+          <Route path="/edit-book/:id" element={<EditBook></EditBook>}></Route>
+          <Route
+            path="/add-new-book"
             element={
               <PrivateRoute>
                 <AddBook></AddBook>

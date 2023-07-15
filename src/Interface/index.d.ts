@@ -31,5 +31,16 @@ export type IBook = {
   author: string;
   genre: BookGenre;
   publishedDate: Date;
-  creator: Types.ObjectId | IUser;
+  creator: IUser;
+};
+
+export type IReview = {
+  review: string;
+  user: IUser;
+  book: IBook | string;
+};
+
+export type IWishlist = {
+  user: IUser;
+  book: IBook;
 };

@@ -1,5 +1,8 @@
 import React from "react";
 import { IBook } from "../../Interface";
+import { useNavigate } from "react-router-dom";
+import BookDetailsAction from "../BookDatails/BookDetailsAction/BookDetailsAction";
+import BookCardAction from "./BookCardAction/BookCardAction";
 interface BookCardProps extends IBook {
   key: string;
 }
@@ -9,16 +12,27 @@ const BookCard: React.FC<BookCardProps> = ({
   author,
   genre,
   publishedDate,
+  _id,
+  creator,
 }) => {
+  const navigate = useNavigate();
   return (
-    <div className="bg-blue-100 rounded-lg shadow-lg p-4">
-      <h2 className="text-2xl font-bold mb-2">{title}</h2>
+    <div
+      onClick={() => navigate(`/book-details/${_id}`)}
+      className="bg-blue-100 rounded-lg shadow-lg p-4  cursor-pointer transition-all"
+    >
+      <h2 className="text-2xl font-bold mb-2 text-center">{title}</h2>
       <p className="text-lg text-gray-600">Author: {author}</p>
       <p className="text-lg text-gray-600">Genre: {genre}</p>
       <p className="text-lg text-gray-600">
-        Published Date: {new Date(publishedDate).toDateString()}
+        Published on: {new Date(publishedDate).toLocaleDateString()}
       </p>
-      {/* Additional rendering logic for other book details */}
+      <BookCardAction
+        bookInfo={{ title, author, genre, publishedDate, _id, creator }}
+      ></BookCardAction>
+      <BookDetailsAction
+        bookInfo={{ title, author, genre, publishedDate, _id, creator }}
+      ></BookDetailsAction>
     </div>
   );
 };

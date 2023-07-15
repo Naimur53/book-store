@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import Loading from "../../Components/Loading/Loading";
 import { toast } from "react-toastify";
-import { loginUser } from "../../redux/features/auth/authSlice";
+import { loginUser, setError } from "../../redux/features/auth/authSlice";
 interface FormData {
   email: string;
   password: string;
@@ -32,6 +32,9 @@ const SignIn: React.FC = () => {
     } else if (!isLoading && user.email) {
       navigate(location.state || "/");
     }
+    return () => {
+      dispatch(setError({ isError: false, error: "" }));
+    };
   }, [error, isLoading, user, location, navigate]);
 
   if (isLoading) {
