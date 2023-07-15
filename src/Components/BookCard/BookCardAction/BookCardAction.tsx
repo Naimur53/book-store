@@ -31,7 +31,6 @@ const BookCardAction: React.FC<IBookCardAction> = ({ bookInfo }) => {
     (single) => single.book._id === bookInfo._id
   );
 
-  console.log(isAlreadyAddedToWishList);
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (!isAlreadyAddedToWishList) {
