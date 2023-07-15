@@ -3,6 +3,7 @@ import { IBook } from "../../Interface";
 import { useNavigate } from "react-router-dom";
 import BookDetailsAction from "../BookDatails/BookDetailsAction/BookDetailsAction";
 import BookCardAction from "./BookCardAction/BookCardAction";
+import BookCardReadingStatusAction from "./BookCardReadingStatusAction/BookCardReadingStatusAction";
 interface BookCardProps extends IBook {
   key?: string;
 }
@@ -27,9 +28,14 @@ const BookCard: React.FC<BookCardProps> = ({
       <p className="text-lg text-gray-600">
         Published on: {new Date(publishedDate).toLocaleDateString()}
       </p>
-      <BookCardAction
-        bookInfo={{ title, author, genre, publishedDate, _id, creator }}
-      ></BookCardAction>
+      <div className="flex justify-between py-3">
+        <BookCardAction
+          bookInfo={{ title, author, genre, publishedDate, _id, creator }}
+        ></BookCardAction>
+        <BookCardReadingStatusAction
+          bookInfo={{ title, author, genre, publishedDate, _id, creator }}
+        ></BookCardReadingStatusAction>
+      </div>
       <BookDetailsAction
         bookInfo={{ title, author, genre, publishedDate, _id, creator }}
       ></BookDetailsAction>

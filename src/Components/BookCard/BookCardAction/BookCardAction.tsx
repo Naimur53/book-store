@@ -25,10 +25,9 @@ const BookCardAction: React.FC<IBookCardAction> = ({ bookInfo }) => {
   if (isError) {
     return <></>;
   }
-  let s = false;
   const mainData: IWishlist[] = data?.data;
 
-  const isAlreadyAddedToWishList = mainData.find(
+  const isAlreadyAddedToWishList = mainData?.find(
     (single) => single.book._id === bookInfo._id
   );
 

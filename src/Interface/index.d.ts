@@ -46,3 +46,9 @@ export type IWishlist = {
   user: IUser;
   book: IBook;
 };
+export type IReading = {
+  _id: string;
+  user: IUser;
+  book: IBook;
+  status: string;
+};
