@@ -27,6 +27,7 @@ const AllBooks = () => {
   }
   return (
     <div className="container">
+      <h2 className="text-4xl font-bold text-center mb-5">Find All books </h2>
       <FilterArea></FilterArea>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
         {data?.data.map((single: IBook) => (

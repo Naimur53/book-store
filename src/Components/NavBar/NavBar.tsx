@@ -22,7 +22,7 @@ const NavBar = () => {
             </div>
             <ul className="group-hover:flex  absolute top-[20px] right-0 w-[200px] md:w-auto md:static hidden md:flex bg-blue-200 md:bg-white shadow md:shadow-none rounded-md py-2 md:rounded-none flex-col md:flex-row  items-center  gap-2 md:gap-6 ">
               <li className=" cursor-pointer text-center">
-                <NavLink to="all-books">Books</NavLink>
+                <NavLink to="all-books">All Books</NavLink>
               </li>
               <li className="cursor-pointer">
                 <Link to="/wishlist">Wishlist</Link>

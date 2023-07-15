@@ -47,9 +47,9 @@ const UpdateBookArea: React.FC<IUpdateBookArea> = ({ bookInfo }) => {
         <div className="flex justify-center">
           <form className="w-[600px]" onSubmit={handleSubmit(onSubmit)}>
             <h2 className="mt-5 text-center text-2xl font-semibold mb-10">
-              Fill Up Form To Publish A Book
+              Fill Up Form To Edit Book
             </h2>
-            <div className="grid grid-cols-2 gap-x-5 p-3 shadow-md">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-3 shadow-md">
               <div>
                 <label className="block" htmlFor="title">
                   Title
