@@ -32,7 +32,10 @@ const Review = () => {
       </div>
       <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5">
         {main.map((single) => (
-          <div className="shadow-lg bg-blue-100 p-3 rounded-md">
+          <div
+            key={single._id}
+            className="shadow-lg bg-blue-100 p-3 rounded-md"
+          >
             <h2 className="text-xl font-bold capitalize">{single.user.name}</h2>
             <p>{single.review}</p>
           </div>
