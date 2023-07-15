@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../../../Interface";
-import axios from "axios";
-
 type IState = {
   isLoading: boolean;
   isError: boolean;
@@ -71,7 +69,6 @@ export const loginUserWithToken = createAsyncThunk(
     });
     const data = await res.json();
     if (data.success) {
-      console.log(data);
       return data.data;
     } else {
       throw new Error(data.message);
