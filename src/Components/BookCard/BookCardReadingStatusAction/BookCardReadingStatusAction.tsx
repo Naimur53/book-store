@@ -58,7 +58,7 @@ const BookCardReadingStatusAction: React.FC<IBookCardReadingStatusAction> = ({
       <div>
         {readonly ? (
           isHasStatus?._id ? (
-            <button className=" capitalize p-1 bg-slate-100 rounded-lg">
+            <button className=" capitalize font-bold px-2 text-sm p-1 bg-slate-100 rounded-lg">
               {isHasStatus.status}
             </button>
           ) : (
@@ -68,11 +68,15 @@ const BookCardReadingStatusAction: React.FC<IBookCardReadingStatusAction> = ({
           <select
             id="readingStatus"
             value={selectedStatus}
+            disabled={addReadingLoading || isUpdateLoading}
             onClick={(e) => e.stopPropagation()}
             onChange={handleStatusChange}
-            className="border rounded-md px-2 py-1"
+            className="border rounded-md px-2 py-1 capitalize disabled:opacity-60 transition-all opacity-100"
           >
-            <option value="">Select status</option>
+            <option hidden value="">
+              Select status
+            </option>
+
             {readingAllStatus.map((status) => (
               <option key={status} value={status}>
                 {status}

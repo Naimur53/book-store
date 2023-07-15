@@ -27,7 +27,7 @@ const Review = () => {
   return (
     <div className="mt-10">
       <div>
-        <h2 className="text-xl font-bold mb-10">All Reviews:</h2>
+        <h2 className="text-xl font-bold mb-5">All Reviews:</h2>
         <AddReviewSection reviews={main}></AddReviewSection>
       </div>
       <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5">

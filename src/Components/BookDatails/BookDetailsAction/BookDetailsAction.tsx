@@ -34,11 +34,11 @@ const BookDetailsAction: React.FC<IBookDetailsAction> = ({ bookInfo }) => {
     }
   }, [isError, isSuccess]);
   if (!user._id) {
-    return <></>;
+    return <div></div>;
   }
   const isUserIsTheCreator = bookInfo.creator._id === user._id;
   if (!isUserIsTheCreator) {
-    return <></>;
+    return <div></div>;
   }
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

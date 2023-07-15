@@ -28,7 +28,7 @@ const AllBooks = () => {
   return (
     <div className="container">
       <FilterArea></FilterArea>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
         {data?.data.map((single: IBook) => (
           <BookCard {...single} key={single._id}></BookCard>
         ))}

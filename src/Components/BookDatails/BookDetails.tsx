@@ -32,20 +32,26 @@ const BookDetails = () => {
   return (
     <div className="container text-lg">
       <h2 className="text-6xl text-center">{title}</h2>
-      <div className="flex mt-5 justify-between">
+      <div className="flex flex-col-reverse gap-2 py-4 md:flex-row mt-5 justify-between">
         <div>
-          <h2>Author: {author}</h2>
-          <h2>Published Date {new Date(publishedDate).toLocaleDateString()}</h2>
+          <h2 className="text-xl font-semibold">Author: {author}</h2>
+          <h4 className="text-sm">
+            Published Date {new Date(publishedDate).toLocaleDateString()}
+          </h4>
         </div>
-        <h2>{genre}</h2>
+        <div>
+          <h2 className="font-bold text-xl px-2 py-1 rounded text-gray-900 bg-blue-300 inline-block">
+            {genre}
+          </h2>
+        </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex flex-col-reverse md:flex-row justify-between">
         <BookDetailsAction bookInfo={data.data}></BookDetailsAction>
-        <div className="flex gap-2 items-center">
+        <div className="flex md:flex-row   gap-2 items-center">
+          <BookCardAction bookInfo={data.data}></BookCardAction>
           <BookCardReadingStatusAction
             bookInfo={data.data}
           ></BookCardReadingStatusAction>
-          <BookCardAction bookInfo={data.data}></BookCardAction>
         </div>
       </div>
       <div>

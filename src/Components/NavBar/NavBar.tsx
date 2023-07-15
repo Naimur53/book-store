@@ -13,7 +13,7 @@ const NavBar = () => {
       <nav className="py-4 2xl:px-6">
         <div className="container flex items-center justify-between">
           <Link to="/">
-            <h2 className="text-xl font-black">Books</h2>
+            <h2 className="text-xl font-black">Booker</h2>
           </Link>
           <ul className="hidden md:flex items-center space-x-6">
             <li className=" cursor-pointer">

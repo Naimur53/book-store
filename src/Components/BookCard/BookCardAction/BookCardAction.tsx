@@ -20,10 +20,10 @@ const BookCardAction: React.FC<IBookCardAction> = ({ bookInfo }) => {
   const [addWishlist, { isLoading: addingWhishLoading }] =
     useAddWishlistMutation();
   if (!user.email) {
-    return <></>;
+    return <div></div>;
   }
   if (isError) {
-    return <></>;
+    return <div></div>;
   }
   const mainData: IWishlist[] = data?.data;
 

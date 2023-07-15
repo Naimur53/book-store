@@ -30,14 +30,14 @@ const FilterArea: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex space-x-4 mb-5 mt-3"
+      className="flex flex-wrap space-x-4 mb-5 mt-3"
     >
       {/* Text Input */}
       <input
         type="text"
         {...register("searchTerm")}
         className="border p-2 flex-1"
-        placeholder="Enter text"
+        placeholder="Search by author name or title or genre "
       />
 
       {/* Select Dropdown */}
