@@ -6,6 +6,13 @@ import Popup from "reactjs-popup";
 import { useDeleteBookMutation } from "../../../redux/features/book/bookApi";
 import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleInfo,
+  faPenToSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+
 interface IBookDetailsAction {
   bookInfo: IBook;
 }
@@ -54,17 +61,18 @@ const BookDetailsAction: React.FC<IBookDetailsAction> = ({ bookInfo }) => {
     <div className="mt-2">
       <button
         onClick={handleEditCLick}
-        className="bg-blue-300 px-4 py-2 rounded-md"
+        className="bg-blue-500 px-4 py-2 rounded-md text-blue-100"
       >
-        Edit Book
+        <FontAwesomeIcon icon={faPenToSquare} />
       </button>
 
       <button
         onClick={handleOpen}
-        className="bg-red-200 px-4 py-2 ml-2 rounded-md"
+        className="bg-red-500 px-4 py-2 ml-2 rounded-md text-red-100"
       >
-        Delete Book
+        <FontAwesomeIcon icon={faTrash} />
       </button>
+
       <Popup open={open} onClose={handleClose}>
         <div className="w-[400px] p-5 rounded-xl bg-white shadow-2xl">
           <h2 className="text-xl font-bold text-red-400">

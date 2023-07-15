@@ -5,6 +5,7 @@ import { useAppSelector } from "../../../redux/hook";
 import {
   useAddReadingMutation,
   useGetAllReadingByUserIdQuery,
+  useUpdateReadingMutation,
 } from "../../../redux/features/reading/readingApi";
 interface IBookCardReadingStatusAction {
   bookInfo: IBook;
@@ -12,11 +13,14 @@ interface IBookCardReadingStatusAction {
 }
 const BookCardReadingStatusAction: React.FC<IBookCardReadingStatusAction> = ({
   bookInfo,
+  readonly = false,
 }) => {
   const { user } = useAppSelector((state) => state.user);
   const { isLoading, isError, data } = useGetAllReadingByUserIdQuery(user._id);
   const [addReading, { isLoading: addReadingLoading }] =
     useAddReadingMutation();
+  const [updateReading, { isLoading: isUpdateLoading }] =
+    useUpdateReadingMutation();
   const [selectedStatus, setSelectedStatus] = useState<string>(""); // Initialize state with an empty string
 
   const mainData: IReading[] = data?.data;
@@ -30,6 +34,7 @@ const BookCardReadingStatusAction: React.FC<IBookCardReadingStatusAction> = ({
     if (!isHasStatus) {
       addReading({ book: bookInfo._id, user: user._id, status: value });
     } else {
+      updateReading({ _id: isHasStatus._id, status: value });
     }
     setSelectedStatus(value); // Update state with the selected option value
   };
@@ -51,20 +56,30 @@ const BookCardReadingStatusAction: React.FC<IBookCardReadingStatusAction> = ({
   return (
     <div>
       <div>
-        <select
-          id="readingStatus"
-          value={selectedStatus}
-          onClick={(e) => e.stopPropagation()}
-          onChange={handleStatusChange}
-          className="border rounded-md px-2 py-1"
-        >
-          <option value="">Select status</option>
-          {readingAllStatus.map((status) => (
-            <option key={status} value={status}>
-              {status}
-            </option>
-          ))}
-        </select>
+        {readonly ? (
+          isHasStatus?._id ? (
+            <button className=" capitalize p-1 bg-slate-100 rounded-lg">
+              {isHasStatus.status}
+            </button>
+          ) : (
+            <></>
+          )
+        ) : (
+          <select
+            id="readingStatus"
+            value={selectedStatus}
+            onClick={(e) => e.stopPropagation()}
+            onChange={handleStatusChange}
+            className="border rounded-md px-2 py-1"
+          >
+            <option value="">Select status</option>
+            {readingAllStatus.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
     </div>
   );

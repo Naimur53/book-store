@@ -33,9 +33,11 @@ const BookCard: React.FC<BookCardProps> = ({
           bookInfo={{ title, author, genre, publishedDate, _id, creator }}
         ></BookCardAction>
         <BookCardReadingStatusAction
+          readonly={true}
           bookInfo={{ title, author, genre, publishedDate, _id, creator }}
         ></BookCardReadingStatusAction>
       </div>
+
       <BookDetailsAction
         bookInfo={{ title, author, genre, publishedDate, _id, creator }}
       ></BookDetailsAction>

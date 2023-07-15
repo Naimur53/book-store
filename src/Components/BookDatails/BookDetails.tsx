@@ -4,6 +4,8 @@ import { useGetBookByIdQuery } from "../../redux/features/book/bookApi";
 import Loading from "../Loading/Loading";
 import Review from "./Review/Review";
 import BookDetailsAction from "./BookDetailsAction/BookDetailsAction";
+import BookCardAction from "../BookCard/BookCardAction/BookCardAction";
+import BookCardReadingStatusAction from "../BookCard/BookCardReadingStatusAction/BookCardReadingStatusAction";
 const BookDetails = () => {
   const { id } = useParams();
   const { data, isLoading, isError } = useGetBookByIdQuery(id);
@@ -37,7 +39,15 @@ const BookDetails = () => {
         </div>
         <h2>{genre}</h2>
       </div>
-      <BookDetailsAction bookInfo={data.data}></BookDetailsAction>
+      <div className="flex justify-between">
+        <BookDetailsAction bookInfo={data.data}></BookDetailsAction>
+        <div className="flex gap-2 items-center">
+          <BookCardReadingStatusAction
+            bookInfo={data.data}
+          ></BookCardReadingStatusAction>
+          <BookCardAction bookInfo={data.data}></BookCardAction>
+        </div>
+      </div>
       <div>
         <Review></Review>
       </div>
