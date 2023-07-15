@@ -19,14 +19,17 @@ const BookCardReadingStatusAction: React.FC<IBookCardReadingStatusAction> = ({
     useAddReadingMutation();
   const [selectedStatus, setSelectedStatus] = useState<string>(""); // Initialize state with an empty string
 
-  const mainData: IReading[] = data.data;
-  const isHasStatus = mainData.find((single) => single.user._id === user._id);
+  const mainData: IReading[] = data?.data;
+  const isHasStatus = mainData?.find(
+    (single) => single.book._id === bookInfo._id
+  );
 
   const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.stopPropagation();
     const value = event.target.value;
     if (!isHasStatus) {
       addReading({ book: bookInfo._id, user: user._id, status: value });
+    } else {
     }
     setSelectedStatus(value); // Update state with the selected option value
   };

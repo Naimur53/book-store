@@ -24,10 +24,20 @@ export const readingApi = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["reading"],
     }),
+    updateReading: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/reading/${id}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: ["reading"],
+    }),
   }),
 });
 export const {
   useAddReadingMutation,
   useDeleteReadingMutation,
   useGetAllReadingByUserIdQuery,
+  useUpdateReadingMutation,
 } = readingApi;
