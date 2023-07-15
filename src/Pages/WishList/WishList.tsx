@@ -31,7 +31,7 @@ const WishList = () => {
   return (
     <div className="container">
       <h2 className="text-4xl font-bold text-center mb-5">My wishlist</h2>
-      <div className="grid md:grid-cols-4 gap-5 grid-cols-1">
+      <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-5 grid-cols-1">
         {mainData.map((single) => (
           <div key={single._id}>
             <BookCard {...single.book}></BookCard>
