@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type IState = {
   searchTerm: string;
-  publishedDate: string;
+  publishedYear: Number | null;
   genre: string;
 };
 const initialState = {
   searchTerm: "",
-  publishedDate: "",
+  publishedYear: null,
   genre: "",
 };
 
@@ -17,7 +17,7 @@ const filterSlice = createSlice({
     setFilter: (state: IState, action: PayloadAction<IState>) => {
       state.searchTerm = action.payload.searchTerm;
       state.genre = action.payload.genre;
-      state.publishedDate = action.payload.publishedDate;
+      state.publishedYear = action.payload.publishedYear;
     },
   },
 });

@@ -1,6 +1,6 @@
 import { apiSlice } from "../apiSlice/apiSlice";
 type IQuery = {
-  [key: string]: number | string | undefined;
+  [key: string]: number | string | undefined | null;
   limit?: number;
   searchTerm?: string;
   title?: string;
@@ -11,7 +11,11 @@ export const bookApi = apiSlice.injectEndpoints({
     getBooks: builder.query({
       query: (queryInfo: IQuery) => {
         const myquery = Object.keys(queryInfo).reduce((pre, current) => {
-          if (queryInfo[current] !== undefined && queryInfo[current] !== "") {
+          if (
+            queryInfo[current] !== undefined &&
+            queryInfo[current] !== "" &&
+            queryInfo[current] !== null
+          ) {
             return `${pre}&${current}=${queryInfo[current]}`;
           }
           return pre;

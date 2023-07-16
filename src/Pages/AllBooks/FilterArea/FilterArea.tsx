@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import bookGenres from "../../../utils/book.";
 import { useAppDispatch } from "../../../redux/hook";
 import { setFilter } from "../../../redux/features/filter/filter";
 import { Link } from "react-router-dom";
+
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 interface FilterData {
   searchTerm?: string;
   genre?: string;
-  publishedDate?: string;
+  publishedYear: Date | null;
 }
-
 const FilterArea: React.FC = () => {
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<FilterData>();
 
@@ -23,9 +27,20 @@ const FilterArea: React.FC = () => {
   };
   const dispatch = useAppDispatch();
   useEffect(() => {
-    const { searchTerm = "", genre = "", publishedDate = "" } = watch();
-    dispatch(setFilter({ searchTerm, genre, publishedDate }));
+    const { searchTerm = "", genre = "", publishedYear = null } = watch();
+    dispatch(
+      setFilter({
+        searchTerm,
+        genre,
+        publishedYear: publishedYear
+          ? new Date(publishedYear).getFullYear()
+          : null,
+      })
+    );
   }, [watch()]);
+  const handleDateChange = (date: Date | null) => {
+    setValue("publishedYear", date, { shouldValidate: true });
+  };
 
   return (
     <form
@@ -53,10 +68,15 @@ const FilterArea: React.FC = () => {
       </select>
 
       {/* Date Picker Input */}
-      <input
-        type="date"
-        {...register("publishedDate")}
-        className="border p-2 md:w-auto w-full"
+      <DatePicker
+        selected={watch("publishedYear")}
+        onChange={handleDateChange}
+        showYearPicker
+        className="border inline-block p-2 h-[44px]"
+        showIcon
+        placeholderText="Choose Year"
+        dateFormat="yyyy" // Register the form control
+        // Add other props specific to the DatePicker here if needed
       />
       <Link to="/add-new-book">
         <button className="px-3 py-2 bg-blue-300 rounded font-bold text-black">

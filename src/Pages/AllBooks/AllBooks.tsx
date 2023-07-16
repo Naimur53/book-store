@@ -7,14 +7,14 @@ import FilterArea from "./FilterArea/FilterArea";
 import { useAppSelector } from "../../redux/hook";
 
 const AllBooks = () => {
-  const { searchTerm, genre, publishedDate } = useAppSelector(
+  const { searchTerm, genre, publishedYear } = useAppSelector(
     (state) => state.filter
   );
   const { data, isLoading, isError } = useGetBooksQuery({
     limit: 0,
     searchTerm,
     genre,
-    publishedDate,
+    publishedYear,
   });
   console.log({ data });
 
