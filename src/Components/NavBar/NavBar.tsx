@@ -28,6 +28,9 @@ const NavBar = () => {
                 <Link to="/wishlist">Wishlist</Link>
               </li>
               <li className="cursor-pointer">
+                <Link to="/reading">Reading</Link>
+              </li>
+              <li className="cursor-pointer">
                 <Link to="/add-new-book">Add Book</Link>
               </li>
               {user.email ? (

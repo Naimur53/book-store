@@ -21,6 +21,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import WishList from "./Pages/WishList/WishList";
 import Footer from "./Components/Footer/Footer";
+import Reading from "./Pages/Reading/Reading";
 // Add the imported icons to the library
 library.add(fas);
 function App() {
@@ -59,6 +60,14 @@ function App() {
             element={
               <PrivateRoute>
                 <WishList></WishList>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/reading"
+            element={
+              <PrivateRoute>
+                <Reading></Reading>
               </PrivateRoute>
             }
           ></Route>
